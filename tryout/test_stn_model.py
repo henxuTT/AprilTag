@@ -9,11 +9,11 @@ from torchvision.transforms import ToTensor
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = STN()  # 创建一个模型的实例
-model.load_state_dict(torch.load('model_parameters.pth'))  # 加载参数
+model.load_state_dict(torch.load('../model_parameters.pth'))  # 加载参数
 model = model.to(device)  # 移动模型到正确的设备上
 model.eval()  # 将模型设置为评估模式
 
-image_path = 'dataset/STN_dataset/tag36h11_005_img/train/'
+image_path = '../dataset/STN_dataset/tag36h11_005_img/train/'
 files = os.listdir(image_path)
 for file in files:
     file_path = os.path.join(image_path, file)

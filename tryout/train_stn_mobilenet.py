@@ -46,7 +46,7 @@ class KeypointDataset(Dataset):
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-image_path = 'dataset/stn_mobilenet/tag36h11_005_img/train/'  # 图像文件路径
+image_path = '../dataset/stn_mobilenet/tag36h11_005_img/train/'  # 图像文件路径
 file_list = os.listdir(image_path)  # 获取文件夹中所有文件的名称
 image_list = [os.path.join(image_path, filename) for filename in file_list]
 label_list = [file_name.replace('.jpg', '.txt').replace('img', 'label') for file_name in image_list]
@@ -102,4 +102,4 @@ for epoch in range(num_epochs):
     # print(f"Epoch {epoch + 1}/{num_epochs}, Loss: {loss.item()}, Validation Loss: {val_loss}")
 # 将模型转回CPU后再保存参数
 model.to('cpu')
-torch.save(model.state_dict(), 'stn_mobilenet_paras.pth')
+torch.save(model.state_dict(), '../stn_mobilenet_paras.pth')

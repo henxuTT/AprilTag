@@ -6,7 +6,7 @@ def transform_save(img, pts, points_array, start_idx, num):
     x1, y1, x2, y2 = pts
     for i in range(start_idx, num+start_idx):
         # 随机生成四边形的顶点坐标 ai
-        a1, a2, a3, a4, a5, a6, a7, a8 = np.random.uniform(0.05, 0.7, 8)
+        a1, a2, a3, a4, a5, a6, a7, a8 = np.random.uniform(0.05, 0.6, 8)
 
         # 定义原始图像中ROI的四个顶点
         src_points = np.float32([[x1, y1], [x2, y1], [x2, y2], [x1, y2]])
@@ -19,17 +19,20 @@ def transform_save(img, pts, points_array, start_idx, num):
         # 计算透视变换矩阵
         M = cv2.getPerspectiveTransform(src_points, dst_points)
 
-        print(M)
+        # print(M)
 
         # 执行透视变换，将ROI映射到四边形图像块
         output_img = cv2.warpPerspective(img, M, (0, 0))
         cv2.imshow('transform', output_img)
         cv2.waitKey(0)
 
-        output_img_name = './dataset/tag36h11_005_img/tag36h11_005_' + f'{i:03d}.jpg'
-        output_txt_name = './dataset/tag36h11_005_label/tag36h11_005_' + f'{i:03d}.txt'
+        # output_img_name = './dataset/tag36h11_005_img/tag36h11_005_' + f'{i:03d}.jpg'
+        # output_txt_name = './dataset/tag36h11_005_label/tag36h11_005_' + f'{i:03d}.txt'
 
-        # cv2.imwrite(output_img_name, output_img)
+        output_img_name = f'{i:03d}.jpg'
+        output_txt_name = f'{i:03d}.txt'
+
+        cv2.imwrite(output_img_name, output_img)
 
         # # 计算特征点的投影变换
         # transformed_points = cv2.perspectiveTransform(points_array, M)
@@ -60,7 +63,7 @@ def transform_save(img, pts, points_array, start_idx, num):
 
 
 # 读取原始图像和ROI区域
-img = cv2.imread('./images/tag36h11_005_000.jpg')
+img = cv2.imread('../images/apriltag_origin/tag36_11_00005.jpg')
 print(img.shape)
 
 x1 = 0
@@ -70,7 +73,7 @@ y2 = img.shape[0]
 pts = [x1, y1, x2, y2]
 
 # 读取txt文件
-txt_file = 'tag36h11_005_000.txt'
+txt_file = '../tag36h11_005_000.txt'
 points = []
 
 with open(txt_file, 'r') as f:
@@ -94,11 +97,11 @@ points_array = np.array(points).reshape(-1, 1, 2).astype(np.float32)
 # transform_save(blurred_2, pts, points_array, 401, 200)
 
 try:
-    transform_save(img, pts, points_array,1, 200)
+    transform_save(img, pts, points_array,1, 1)
     blurred_1 = cv2.GaussianBlur(img, (5, 5), 0)
-    transform_save(blurred_1, pts, points_array,201, 200)
+    transform_save(blurred_1, pts, points_array,201, 1)
     blurred_2 = cv2.GaussianBlur(img, (15, 15), 0)
-    transform_save(blurred_2, pts, points_array, 401, 200)
+    transform_save(blurred_2, pts, points_array, 401, 1)
 except Exception as e:
     print("An exception occurred: ", e)
 

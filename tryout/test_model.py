@@ -11,12 +11,12 @@ from network.decoder_net import DecoderNet
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 model = DecoderNet()
-model.load_state_dict(torch.load('model_parameters.pth'))
+model.load_state_dict(torch.load('../model_parameters.pth'))
 model = model.to(device)
 model.eval()  # 设置为评估模式
 
 # 加载和预处理图像
-image_path = 'dataset/tag36h11_005_img/'
+image_path = '../dataset/tag36h11_005_img/'
 # image_path1 = 'dataset/tag_05_image/001.png'
 files = os.listdir(image_path)
 for file in files:

@@ -99,6 +99,6 @@ for epoch in range(num_epochs):
 
 # 将模型转回CPU后再保存参数
 model.to('cpu')
-torch.save(model.state_dict(), 'model_parameters.pth')
+torch.save(model.state_dict(), '../model_parameters.pth')
 
 

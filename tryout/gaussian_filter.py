@@ -1,7 +1,7 @@
 import cv2
 
 # 读取图片
-img = cv2.imread('images/tag36h11_005_000.jpg', cv2.IMREAD_COLOR)
+img = cv2.imread('../images/tag36h11_005_000.jpg', cv2.IMREAD_COLOR)
 
 # 进行高斯模糊
 # 第二个参数是高斯核的尺寸，选择合适的值以达到想要的模糊效果，但需要注意的是这个值必须是奇数，如(15, 15)

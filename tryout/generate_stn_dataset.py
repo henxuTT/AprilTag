@@ -45,7 +45,7 @@ def transform_save_2(img, pts_1, pts_2, start_idx, num, output_img_path, output_
         print(i, 'finished')
 
 
-img = cv2.imread('images/tag36h11_005_000.jpg')
+img = cv2.imread('../images/tag36h11_005_000.jpg')
 top = bottom = left = right = 50
 
 # 使用copyMakeBorder函数添加白边

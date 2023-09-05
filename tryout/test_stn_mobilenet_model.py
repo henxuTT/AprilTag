@@ -11,12 +11,12 @@ from network.stn_mobilenet import AprilTagFeatureNet
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 model = AprilTagFeatureNet()
-model.load_state_dict(torch.load('stn_mobilenet_paras.pth'))
+model.load_state_dict(torch.load('../stn_mobilenet_paras.pth'))
 model = model.to(device)
 model.eval()  # 设置为评估模式
 
 # 加载和预处理图像
-image_path = 'dataset/stn_mobilenet/tag36h11_005_img/train'
+image_path = '../dataset/stn_mobilenet/tag36h11_005_img/train'
 # image_path1 = 'dataset/tag_05_image/001.png'
 files = os.listdir(image_path)
 for file in files:
